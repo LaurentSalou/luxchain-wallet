@@ -15,14 +15,18 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+* {
+    font-family: 'Montserrat',sans-serif;
+    font-weight: 400;
+}
+
 .alert-md .alert-wrapper, .alert-ios .alert-wrapper {
     max-width: none;
 }
 
 .scroll-content {
     padding-bottom: 0 !important;
-    top: -5px;
-    padding-top: 21px !important;
+    background-color: #F5F5F5;
 }
 
 .item.error-border .item-inner{
@@ -361,6 +365,7 @@ ion-list-header{
     width: 55px;
     top: -12px;
     right: 0px;
+    background-color: inherit;
 }
 
 .menu-close .item-inner {
@@ -369,4 +374,8 @@ ion-list-header{
 
 .menu-close-button {
     height: 20px;
+}
+
+.toolbar-background {
+    background-color: #ffffff
 }

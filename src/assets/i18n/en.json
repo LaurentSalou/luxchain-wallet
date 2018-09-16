@@ -487,6 +487,7 @@
 
 
     "LUXCHAIN_WALLET": "Luxchain wallet",
-    "DIGITAL_ASSET": "Digital Asset"
+    "DIGITAL_ASSET": "Digital Asset",
+    "DIGITAL_ASSET.TITLE": "Digital Asset"
 
 }
