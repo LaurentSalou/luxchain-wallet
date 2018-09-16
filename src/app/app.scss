@@ -340,3 +340,16 @@ ion-list-header{
 .button-md-secondary.activated, .button-ios-secondary.activated {
     background-color: #F0F0F0 !important;
 }
+
+.menu-icon {
+    height: 34px;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.menu-text {
+    font-size: 20px;
+    display: inline-block;
+    position: absolute;
+    margin: 15px;
+}

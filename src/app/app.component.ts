@@ -7,6 +7,8 @@ import { Keyboard } from '@ionic-native/keyboard'
 import { AppGlobals } from './app.global'
 import { Storage } from '@ionic/storage'
 import { PluginProvider } from '../providers/plugin/plugin'
+import { AlertProvider } from '../providers/alert/alert'
+import { MvsServiceProvider } from '../providers/mvs-service/mvs-service'
 
 @Component({
     templateUrl: 'app.html'
@@ -26,7 +28,9 @@ export class MyETPWallet {
         private event: Events,
         private globals: AppGlobals,
         public statusBar: StatusBar,
-        public keyboard: Keyboard
+        public keyboard: Keyboard,
+        private alert: AlertProvider,
+        private mvs: MvsServiceProvider
     ) {
 
         this.initializeApp()
@@ -118,11 +122,12 @@ export class MyETPWallet {
             })
             .then(plugins => {
                 return Promise.all([
-                    { title: 'ACCOUNT.TITLE', component: "AccountPage", icon: 'home', root: true },
-                    { title: 'AVATARS', component: "AvatarsPage", icon: 'person' },
-                    { title: 'REGISTER_MIT', component: "MITRegisterPage", icon: 'create' },
-                    { title: 'LANGUAGE_SETTINGS', component: "LanguageSwitcherPage", icon: 'flag' },
-                    { title: 'LOGOUT', component: "InformationPage", icon: 'information-circle' }
+                    { title: 'ACCOUNT.TITLE', component: "AccountPage", icon: 'portfolio', root: true },
+                    { title: 'AVATARS', component: "AvatarsPage", icon: 'digital_id' },
+                    { title: 'DIGITAL_ASSET', component: "DigitalAssetPage", icon: 'digital_asset' },
+                    { title: 'LANGUAGE_SETTINGS', component: "LanguageSwitcherPage", icon: 'wallet' },
+                    { title: 'SETTINGS', component: "SettingsPage", icon: 'wallet' },
+                    { title: 'LOGOUT', component: "Logout", icon: 'logout' }
                 ].concat(plugins).map((entry) => this.addToMenu(entry)))
             });
     }
@@ -141,9 +146,12 @@ export class MyETPWallet {
     }
 
     openPage(page) {
+        console.log("In open page: " + page.component)
         if (page.component) {
             if (page.root)
                 this.nav.setRoot(page.component);
+            else if (page.component == "Logout")
+                this.logout()
             else
                 this.nav.push(page.component, page.params);
         }
@@ -154,5 +162,12 @@ export class MyETPWallet {
                 window.open(page.newtab, '_blank');
 
 
+    }
+
+    logout() {
+        console.log("Trying to logout")
+        this.alert.showLogout(() => this.mvs.hardReset()
+            .then(() => this.nav.setRoot("LoginPage"))
+        )
     }
 }

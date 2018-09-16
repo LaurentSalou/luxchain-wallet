@@ -14,6 +14,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Keyboard } from '@ionic-native/keyboard';
 import { PluginProvider } from '../providers/plugin/plugin';
+import { AlertProvider } from '../providers/alert/alert';
 
 var pckg = require('../../package.json');
 
@@ -55,6 +56,7 @@ export function HttpLoaderFactory(http: Http) {
         StatusBar,
         Keyboard,
         PluginProvider,
+        AlertProvider
     ]
 })
 export class AppModule {

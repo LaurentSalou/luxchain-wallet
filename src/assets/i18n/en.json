@@ -486,6 +486,7 @@
     "SWAP_MST.INCORRECT_ETH_ADDRESS": "Incorrect Ethereum address. Please double check the address",
 
 
-    "LUXCHAIN_WALLET": "Luxchain wallet"
+    "LUXCHAIN_WALLET": "Luxchain wallet",
+    "DIGITAL_ASSET": "Digital Asset"
 
 }
