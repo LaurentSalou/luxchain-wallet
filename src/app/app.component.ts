@@ -146,7 +146,6 @@ export class MyETPWallet {
     }
 
     openPage(page) {
-        console.log("In open page: " + page.component)
         if (page.component) {
             if (page.root)
                 this.nav.setRoot(page.component);

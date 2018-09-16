@@ -353,3 +353,20 @@ ion-list-header{
     position: absolute;
     margin: 15px;
 }
+
+.menu-close {
+    display: inline-block;
+    position: absolute;
+    float: right;
+    width: 55px;
+    top: -12px;
+    right: 0px;
+}
+
+.menu-close .item-inner {
+    border-bottom: 0 !important;
+}
+
+.menu-close-button {
+    height: 20px;
+}

@@ -1,7 +1,12 @@
 <ion-menu [content]="content">
   <ion-header>
     <ion-toolbar>
-      <ion-title>{{'MENU'|translate}}</ion-title>
+      <ion-title>
+        {{'MENU'|translate}}
+        <button ion-item menuClose class="menu-close">
+          <img class="menu-close-button" [src]="'assets/icon/close.png'">
+        </button>
+      </ion-title>
     </ion-toolbar>
   </ion-header>
 
