@@ -25,8 +25,13 @@
 }
 
 .scroll-content {
-    padding-bottom: 0 !important;
     background-color: #F5F5F5;
+    padding-top: 20px;
+}
+
+.menu-inner .scroll-content {
+    padding-top: 0px;
+    background-color: #FFFFFF;
 }
 
 .item.error-border .item-inner{
@@ -64,7 +69,6 @@
 .advice {
     font-size: 1.2rem;
     color: rgb(148, 148, 148);
-    padding-left: 16px;
     margin-top: 10px;
 }
 
@@ -183,26 +187,6 @@ ion-list-header{
 [icon-left] ion-icon, [icon-start] ion-icon{
     line-height: 1;
 }
-
-// Global Browser Style settings
-@media (min-width: 1079px) {
-    .scroll-content {
-        padding-top: 20px;
-        padding-left: 50px;
-        padding-right: 50px;
-        max-width: 1500px !important;
-        margin: auto;
-        overflow-y: auto;
-    }
-
-    .menu-inner .scroll-content{
-        padding: 0px 0px 0px 0px;
-        overflow-y: hidden;
-    }
-
-}
-
-
 
 /* iOS */
 .ios .scroll-content {
@@ -349,6 +333,7 @@ ion-list-header{
     height: 34px;
     margin-right: 10px;
     margin-top: 10px;
+    margin-left: 20px;
 }
 
 .menu-text {
@@ -378,4 +363,8 @@ ion-list-header{
 
 .toolbar-background {
     background-color: #ffffff
+}
+
+.item {
+    padding-left: 0;
 }

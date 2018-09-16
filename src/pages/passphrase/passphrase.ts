@@ -46,8 +46,7 @@ export class PassphrasePage {
     encryptMobile(password) {
         this.showLoading();
         let wallet = {};
-        wallet = { "index": 10 }
-        console.log('wallet set 10')
+        wallet = { "index": 1 }
         this.wallet.setWallet(wallet)
             .then((wallet) => this.wallet.setSeedMobile(password, this.mnemonic))
             .then((seed) => this.wallet.setMobileWallet(seed))
@@ -60,7 +59,7 @@ export class PassphrasePage {
             });
     }
 
-    passwordValid = (password) => (password) ? password.length > 5 : false;
+    passwordValid = (password) => (password) ? password.length > 7 : false;
 
     complete = (password, password_repeat) => (password && password_repeat) ? this.passwordValid(password) && password == password_repeat : false;
 

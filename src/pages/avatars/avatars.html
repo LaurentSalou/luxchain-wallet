@@ -1,59 +1,59 @@
 <ion-header>
     <ion-navbar>
-        <ion-title>{{"AVATARS" | translate}}</ion-title>
+        <ion-title>{{"DIGITAL_ID" | translate}}</ion-title>
     </ion-navbar>
 </ion-header>
 
-<ion-content padding style="padding-bottom: 0;">
-    <ion-row>
-        <ion-col>
-            <p align="center">{{"AVATARS.INFORMATION" | translate}}</p>
-        </ion-col>
-    </ion-row>
-    <div class="no-avatar" *ngIf="no_avatar">{{"AVATARS.NO_AVATARS" | translate}}</div>
-    <ion-card class="avatar-card" *ngFor="let avatar of avatars">
-        <ion-grid>
+<ion-content>
+    <div class="no-avatar" *ngIf="no_avatar">
+        <ion-list class="content">
             <ion-row>
-                <ion-col col-sm-12 col-md-6>
-                    <ion-item>
-                        <ion-avatar item-start>
-                            <img class="avatar-logo" [src]="'assets/icon/default_avatar.png'">
-                        </ion-avatar>
-                        <h1>{{avatar.symbol}}</h1>
-                        <!--h1><ion-icon name="person"></ion-icon> {{avatar.symbol}}</h1-->
-                        {{avatar.address}}
-                        <!--textarea ion-input type="text" #copy value="{{avatar.address}}" readonly>{{avatar.address}}</textarea>
-                        <button ion-button item-right icon-left [ngxClipboard]="copy">
-                            <ion-icon name="copy"></ion-icon>
-                        </button-->
-                    </ion-item>
-                    <ion-item *ngIf="avatar.certs && avatar.certs.length > 0">
-                        <h2 class="certificates-title"><ion-icon name="paper"></ion-icon> {{"AVATARS.MY_CERTS" | translate}}:</h2>
-                        <ion-row *ngFor="let cert of avatar.certs">
-                            <ion-col *ngIf="cert.cert_type == 'issue'" class="cert-type">{{"AVATARS.SECONDARY_ISSUE" | translate}}</ion-col>
-                            <ion-col *ngIf="cert.cert_type == 'domain'" class="cert-type">{{"AVATARS.DOMAIN" | translate}}</ion-col>
-                            <ion-col *ngIf="cert.cert_type == 'naming'" class="cert-type">{{"AVATARS.NAMING" | translate}}</ion-col>
-                            <ion-col>{{cert.symbol}}</ion-col>
-                        </ion-row>
-                    </ion-item>
-                </ion-col>
-                <ion-col col-sm-12 col-md-6>
-                    <button class="right-buttons" ion-button clear icon-left color="primary" icon-left (click)="registerMIT(avatar.symbol, avatar.address)">
-                        <ion-icon name="add"></ion-icon>
-                        {{"REGISTER_MIT" | translate}}
-                    </button>
-                    <button class="right-buttons" ion-button clear icon-left color="danger" icon-left (click)="createAsset(avatar.symbol, avatar.address)">
-                        <ion-icon name="add"></ion-icon>
-                        {{"REGISTER_MST" | translate}}
-                    </button>
+                <ion-col>
+                    <p align="center">{{"DIGITAL_ID.INFORMATION" | translate}}</p>
                 </ion-col>
             </ion-row>
+            <ion-item [ngClass]="{'error-border': !validSymbol(symbol)}">
+                <ion-label color="primary" floating>{{"CREATE_DID.SYMBOL" | translate}}</ion-label>
+                <ion-input name="symbol" [(ngModel)]="symbol" maxlength="63" required></ion-input>
+            </ion-item>
+            <div no-lines class="advice">{{"HELP.CREATE_DID_NAME" | translate}}</div>
+            <ion-item *ngIf="list_all_avatars.indexOf(symbol) !== -1" no-lines class="wrong-input">{{"CREATE_AVATAR.AVATAR_ALREADY_EXIST" | translate}}</ion-item>
+            <ion-item *ngIf="symbol.length > 0 && symbol.length < 3" no-lines class="wrong-input">{{"CREATE_AVATAR.AVATAR_NAME_TOO_SHORT" | translate}}</ion-item>
+
+            <ion-item [ngClass]="{'error-border': !validPassword(passphrase)}">
+                <ion-label color="primary" floating>{{"PASSWORD" | translate}}</ion-label>
+                <ion-input name="passphrase" type="password" [(ngModel)]="passphrase" required></ion-input>
+            </ion-item>
+            <br>
+        </ion-list>
+        <div class="btn-container">
+            <ion-row>
+                <button ion-button full [disabled]="!validSymbol(symbol)||!validPassword(passphrase)" (click)="confirm()" icon-left>
+                    <ion-icon disabled="checked" name="send"></ion-icon>
+                    {{"CREATE_DID.CREATE_BTN" | translate}}
+                </button>
+            </ion-row>
+            <br>
+            <ion-row>
+                <button ion-button color="secondary" full item-right icon-left (click)="cancel($event)" color="secondary">
+                    <ion-icon name="cancel"></ion-icon>
+                    {{'CANCEL'|translate}}
+                </button>
+            </ion-row>
+        </div>
+    </div>
+    <div *ngIf="!no_avatar" class="content">
+        <ion-row>
+            <ion-col>
+                <p align="center">{{"DIGITAL_ID.INFORMATION" | translate}}</p>
+            </ion-col>
+        </ion-row>
+        <ion-card class="avatar-card" *ngFor="let avatar of avatars">
 
 
-        </ion-grid>
-    </ion-card>
-    <button ion-button icon-left color="primary" icon-left (click)="create()" class="create-avatar-btn">
-        <ion-icon name="person-add"></ion-icon>
-        {{"CREATE_AVATAR" | translate}}
-    </button>
+                                <img class="did-logo" [src]="'assets/icon/did.png'">
+    
+                            <h1>{{avatar.symbol}}</h1>
+        </ion-card>
+    </div>
 </ion-content>

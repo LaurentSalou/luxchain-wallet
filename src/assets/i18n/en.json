@@ -488,6 +488,16 @@
 
     "LUXCHAIN_WALLET": "Luxchain wallet",
     "DIGITAL_ASSET": "Digital Asset",
-    "DIGITAL_ASSET.TITLE": "Digital Asset"
+    "DIGITAL_ASSET.TITLE": "Digital Asset",
+    "DIGITAL_ID": "Digital ID",
+    "DIGITAL_ID.INFORMATION": "A Digital ID represents your identity on LUXCHAIN. Digital ID's are used to create Digital Assets, send and receive LXR, and build reputation on LUXCHAIN. Verifiers use their Digital ID to verify a Digital Asset.",
+    "CREATE_DID.SYMBOL": "Digital ID Username",
+    "HELP.CREATE_DID_NAME": "Your Digital ID Username is unique, it can contain numbers, uppercase letters, lowercase letters, dots, dashes, underscores and @.",
+    "CREATE_DID.DID_ALREADY_EXIST": "This Digital ID Username has already been registered",
+    "CREATE_DID.DID_NAME_TOO_SHORT": "The Digital ID Username must be at least 3 characters long",
+    "CREATE_DID.CONFIRMATION_TITLE": "Create your Digital ID cost 1 ETP.",
+    "CREATE_DID.CONFIRMATION_SUBTITLE": "Are you sure you want to create your Digital ID?",
+    "CREATE_DID.CREATE_BTN": "Create Digital ID",
+    "SUCCESS_CREATE_DID": "Your Digital ID has been successfully created"
 
 }

@@ -327,7 +327,7 @@ export class AssetTransferPage {
         this.sendMoreValidAddress = valid
     }
 
-    validPassword = (passphrase) => (passphrase.length > 0)
+    validPassword = (passphrase) => (passphrase.length > 7)
 
     validMessageLength = (message) => this.mvs.verifyMessageSize(message) < 253
 

@@ -140,7 +140,7 @@ export class CreateAvatarPage {
             })
     }
 
-    validPassword = (passphrase) => (passphrase.length > 0)
+    validPassword = (passphrase) => (passphrase.length > 7)
 
     validAddress = (avatar_address) => (avatar_address != '')
 
