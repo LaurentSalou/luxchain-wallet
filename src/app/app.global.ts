@@ -17,7 +17,7 @@ export class AppGlobals {
     readonly SwapAddress = '0xc1e5fd24fa2b4a3581335fc3f2850f717dd09c86';
     readonly crosschain_avatar = 'droplet'
 
-    readonly DEFAULT_NETWORK = 'mainnet'
+    readonly DEFAULT_NETWORK = 'testnet'
 
     constructor(
         private event: Events,

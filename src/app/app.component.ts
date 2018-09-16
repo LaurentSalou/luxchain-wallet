@@ -49,7 +49,6 @@ export class MyETPWallet {
 
         this.setTheme();
         this.event.subscribe("theme_changed", (theme) => {
-            this.setHeaderColor(theme);
             this.storage.set('theme', theme)
                 .then(() => this.setTheme())
         });
@@ -83,7 +82,6 @@ export class MyETPWallet {
         this.storage.get('theme')
             .then((theme) => {
                 document.getElementById('theme').className = 'theme-' + ((theme) ? theme : 'default');
-                this.setHeaderColor(theme);
             })
     }
 
@@ -104,9 +102,6 @@ export class MyETPWallet {
         return Promise.all([
             { title: 'LOGIN', component: "LoginPage", icon: 'log-in', root: true },
             { title: 'LANGUAGE_SETTINGS', component: "LanguageSwitcherPage", icon: 'flag' },
-            { title: 'THEME_SETTINGS', component: "ThemeSwitcherPage", icon: 'color-palette' },
-            { title: 'REPORT_BUG', newtab: 'https://github.com/mvs-org/lightwallet/issues', icon: 'bug' },
-            { title: 'INFORMATION', component: "InformationPage", icon: 'information-circle' }
         ].map((entry) => this.addToMenu(entry)))
     }
 
@@ -124,32 +119,12 @@ export class MyETPWallet {
             .then(plugins => {
                 return Promise.all([
                     { title: 'ACCOUNT.TITLE', component: "AccountPage", icon: 'home', root: true },
-                    { title: 'ETP_DEPOSIT', component: "DepositPage", icon: 'log-in' },
                     { title: 'AVATARS', component: "AvatarsPage", icon: 'person' },
-                    { title: 'REGISTER_MST', component: "AssetIssuePage", icon: 'globe' },
                     { title: 'REGISTER_MIT', component: "MITRegisterPage", icon: 'create' },
-                    { title: 'ETH_BRIDGE', component: "EthBridgePage", icon: 'swap' },
                     { title: 'LANGUAGE_SETTINGS', component: "LanguageSwitcherPage", icon: 'flag' },
-                    { title: 'THEME_SETTINGS', component: "ThemeSwitcherPage", icon: 'color-palette' },
-                    { title: 'SETTINGS', component: "SettingsPage", icon: 'settings' },
-                    { title: 'REPORT_BUG', component: "ReportPage", icon: 'bug' },
-                    { title: 'INFORMATION.TITLE', component: "InformationPage", icon: 'information-circle' }
+                    { title: 'LOGOUT', component: "InformationPage", icon: 'information-circle' }
                 ].concat(plugins).map((entry) => this.addToMenu(entry)))
             });
-    }
-
-    setHeaderColor(key) {
-        // Status bar theme for android
-        if (this.platform.is('android')) {
-            this.statusBar.styleLightContent();
-            this.statusBar.backgroundColorByHexString('#000000');
-        } else if (this.platform.is('ios')) {    // Status bar theme for iOS
-            if ((key == 'noctilux') || (key == 'solarized')) {
-                this.statusBar.styleLightContent();
-            } else {
-                this.statusBar.styleDefault();
-            }
-        }
     }
 
     private addToMenu(menu_entry) {

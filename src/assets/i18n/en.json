@@ -483,6 +483,9 @@
     "ETH_TO_MVS.DO_ONLY_ONCE": "Please note this process only has to be done once.",
     "ETH_TO_MVS.SWAP_CENTER_ADDRESS": "Metaverse swap center on Ethereum:",
 
-    "SWAP_MST.INCORRECT_ETH_ADDRESS": "Incorrect Ethereum address. Please double check the address"
+    "SWAP_MST.INCORRECT_ETH_ADDRESS": "Incorrect Ethereum address. Please double check the address",
+
+
+    "LUXCHAIN_WALLET": "Luxchain wallet"
 
 }
