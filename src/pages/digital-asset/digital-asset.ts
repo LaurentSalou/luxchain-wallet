@@ -41,7 +41,8 @@ export class DigitalAssetPage {
     tickers = {}
     base : string
     domains: any = []
-    whitelist: any = []
+    avatars: Array<any>;
+    no_avatar: boolean = true;
 
     private syncinterval: any;
 
@@ -79,48 +80,13 @@ export class DigitalAssetPage {
         this.mvs.getAddresses()
             .then((addresses) => {
                 if (Array.isArray(addresses) && addresses.length)
-                    this.initialize()
+                    this.showBalances()
                 else
                     this.nav.setRoot("LoginPage")
             })
 
-        this.mvs.getWhitelist()
-            .then((whitelist) => {
-                this.whitelist = whitelist;
-            })
-    }
-
-    private loadFromCache() {
-        return this.showBalances()
-            .then(() => this.mvs.getHeight())
-            .then((height: number) => {
-                this.height = height
-                return height
-            })
-    }
-
-    private initialize = () => {
-
-        this.syncinterval = setInterval(() => this.update(), 5000)
-
-        return this.mvs.getDbUpdateNeeded()
-            .then((target: any) => {
-                if (target)
-                    return this.mvs.dataReset()
-                        .then(() => this.mvs.setDbVersion(target))
-                return this.loadFromCache()
-            })
-            .then(() => this.update())
-
-    }
-
-    private update = () => {
-        return this.mvs.getUpdateNeeded()
-            .then((update_needed) => {
-                if (update_needed)
-                    return this.sync().then(() => this.mvs.setUpdateTime())
-            })
-            .catch(() => console.log("Can't update"))
+        this.loadAvatars()
+            .catch(console.error);
     }
 
     ionViewWillLeave = () => clearInterval(this.syncinterval)
@@ -129,40 +95,12 @@ export class DigitalAssetPage {
         .then(() => this.nav.setRoot("LoginPage"))
     )
 
-    sync(refresher = undefined) {
-        //Only allow a single sync process
-        if (this.syncing) {
-            this.syncingSmall = false
-            return Promise.resolve()
+    create(){
+        if(this.no_avatar) {
+            this.alert.createAssetNoDid()
         } else {
-            this.syncing = true
-            this.syncingSmall = true
-            return Promise.all([this.mvs.updateHeight(), this.updateBalances()])
-                .then((results) => {
-                    this.height = results[0]
-                    this.syncing = false
-                    this.syncingSmall = false
-                    if (refresher)
-                        refresher.complete()
-                    this.offline = false
-                })
-                .catch((error) => {
-                    console.error(error)
-                    this.syncing = false
-
-                    this.syncingSmall = false
-                    if (refresher)
-                        refresher.complete()
-                    this.offline = true
-                })
+            this.nav.push("MITRegisterPage")
         }
-    }
-
-    private updateBalances = () => {
-        return this.mvs.getData()
-            .then(() => this.showBalances())
-            .then(() => this.mvs.setUpdateTime())
-            .catch((error) => console.error("Can't update balances: " + error))
     }
 
     private showBalances() {
@@ -187,6 +125,16 @@ export class DigitalAssetPage {
             .catch((e) => {
                 console.error(e)
                 console.log("Can't load balances")
+            })
+    }
+
+    loadAvatars(){
+        return this.mvs.listAvatars()
+            .then((avatars) => {
+                this.avatars = avatars;
+                if(this.avatars && this.avatars.length != 0) {
+                    this.no_avatar = false;
+                }
             })
     }
 

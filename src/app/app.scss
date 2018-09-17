@@ -317,15 +317,15 @@ ion-list-header{
 
 
 /*Luxchain colors*/
-.button-md-secondary, .button-ios-secondary {
+.button-md-secondary:not(.button-clear), .button-ios-secondary:not(.button-clear) {
     color: #666666;
 }
 
-.button-md.activated, .button-ios.activated {
+.button-md.activated:not(.button-clear), .button-ios.activated:not(.button-clear) {
     background-color: #F35523 !important;
 }
 
-.button-md-secondary.activated, .button-ios-secondary.activated {
+.button-md-secondary.activated:not(.button-clear), .button-ios-secondary.activated:not(.button-clear) {
     background-color: #F0F0F0 !important;
 }
 

@@ -17,14 +17,25 @@
     <ion-list no-lines *ngIf="!syncing||balances!=undefined">
         <ion-grid>
             <h2 [translate]="'DIGITAL_ASSET.TITLE'" class="page-title"></h2>
-            <ion-row *ngIf="balances!=undefined">
-                <ng-container *ngFor="let asset of balancesKeys" class="asset-container">
-                    <ion-col *ngIf="balances.MST[asset]!==undefined" class="asset-container">
-                        <digital-asset-card [avatar]="toto" [symbol]="asset"></digital-asset-card>
+            <ion-row *ngIf="balances != undefined && balances.MIT != undefined">
+                <ng-container *ngFor="let asset of balances.MIT" class="asset-container">
+                    <ion-col class="asset-container">
+                        <digital-asset-card [avatar]="mit.owner" [symbol]="mit.symbol"></digital-asset-card>
                     </ion-col>
                 </ng-container>
             </ion-row>
-            <br>
+            <ion-row *ngIf="balances == undefined || balances.MIT == undefined || balances.MIT.length == 0">
+                <img class="no-asset-img" [src]="'assets/icon/no_digital_asset.png'">
+                <h2 class="no-asset-txt">{{"DIGITAL_ASSET.NO_ASSET" | translate}}</h2>
+            </ion-row>
+            <div class="btn-container">
+                <ion-row>
+                    <button ion-button full (click)="create()" icon-left>
+                        <img class="menu-close-button" [src]="'assets/icon/create_digital_asset.png'">
+                        {{"DIGITAL_ASSET.CREATE_BTN" | translate}}
+                    </button>
+                </ion-row>
+            </div>
         </ion-grid>
     </ion-list>
 </ion-content>

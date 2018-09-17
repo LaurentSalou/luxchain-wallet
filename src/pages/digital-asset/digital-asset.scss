@@ -149,4 +149,30 @@ page-digital-asset {
         width: 100%;
         height: 50px;
     }
+
+    .no-asset-img {
+        width: 200px;
+        height: 200px;
+        margin-left: calc(50% - 100px);
+    }
+
+    .no-asset-txt {
+        width: 100%;
+        color: #999999;
+    }
+
+    .btn-container {
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 30px;
+    }
+
+    .btn-container button {
+        height: 50px;
+    }
+
+    button img {
+        margin-right: 10px;
+    }
+
 }

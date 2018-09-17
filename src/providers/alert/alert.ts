@@ -174,5 +174,17 @@ export class AlertProvider {
         })
     }
 
+    createAssetNoDid() {
+        this.translate.get(['CREATE_DID_FIRST_TITLE', 'CREATE_DID_FIRST_BODY', 'OK']).subscribe(translations => {
+            this.alertCtrl.create({
+                title: translations.CREATE_DID_FIRST_TITLE,
+                message: translations.CREATE_DID_FIRST_BODY,
+                buttons: [
+                    { text: translations.OK },
+                ]
+            }).present()
+        })
+    }
+
 
 }

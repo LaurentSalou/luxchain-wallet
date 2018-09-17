@@ -498,6 +498,11 @@
     "CREATE_DID.CONFIRMATION_TITLE": "Create your Digital ID cost 1 ETP.",
     "CREATE_DID.CONFIRMATION_SUBTITLE": "Are you sure you want to create your Digital ID?",
     "CREATE_DID.CREATE_BTN": "Create Digital ID",
-    "SUCCESS_CREATE_DID": "Your Digital ID has been successfully created"
+    "SUCCESS_CREATE_DID": "Your Digital ID has been successfully created",
+    "DIGITAL_ASSET.NO_ASSET": "No Digital Asset Created Yet",
+    "DIGITAL_ASSET.CREATE_BTN": "Create Digital Asset",
+    "CREATE_DID_FIRST_TITLE": "No Digital ID",
+    "CREATE_DID_FIRST_BODY": "Please create a Digital ID first",
+    "CREATE_DID.CREATE_ASSET_BTN": "Create Digital Asset"
 
 }

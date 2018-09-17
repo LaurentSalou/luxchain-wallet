@@ -1,7 +1,7 @@
 {
-  "name": "mvs-lightwallet",
-  "version": "0.5.2e",
-  "author": "Sven Mutzl",
+  "name": "luxchain-lightwallet",
+  "version": "0.0.1",
+  "author": "Metaverse",
   "homepage": "https://www.myetpwallet.com/",
   "private": true,
   "scripts": {

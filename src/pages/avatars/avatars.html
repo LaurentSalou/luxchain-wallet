@@ -29,14 +29,12 @@
         <div class="btn-container">
             <ion-row>
                 <button ion-button full [disabled]="!validSymbol(symbol)||!validPassword(passphrase)" (click)="confirm()" icon-left>
-                    <ion-icon disabled="checked" name="send"></ion-icon>
                     {{"CREATE_DID.CREATE_BTN" | translate}}
                 </button>
             </ion-row>
             <br>
             <ion-row>
                 <button ion-button color="secondary" full item-right icon-left (click)="cancel($event)" color="secondary">
-                    <ion-icon name="cancel"></ion-icon>
                     {{'CANCEL'|translate}}
                 </button>
             </ion-row>
@@ -49,11 +47,16 @@
             </ion-col>
         </ion-row>
         <ion-card class="avatar-card" *ngFor="let avatar of avatars">
-
-
-                                <img class="did-logo" [src]="'assets/icon/did.png'">
-    
-                            <h1>{{avatar.symbol}}</h1>
+            <img class="did-logo" [src]="'assets/icon/did.png'">
+            <h1>{{avatar.symbol}}</h1>
         </ion-card>
+        <div class="btn-container">
+            <ion-row>
+                <button ion-button full clear (click)="gotoCreateAsset()" icon-left>
+                    <ion-icon name="add"></ion-icon>{{"CREATE_DID.CREATE_ASSET_BTN" | translate}}
+                </button>
+            </ion-row>
+            <br>
+        </div>
     </div>
 </ion-content>

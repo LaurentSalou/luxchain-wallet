@@ -156,4 +156,6 @@ export class AvatarsPage {
 
     validPassword = (passphrase) => (passphrase.length > 7)
 
+    gotoCreateAsset = () => this.navCtrl.push("MITRegisterPage")
+
 }
