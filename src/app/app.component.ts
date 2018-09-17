@@ -104,8 +104,8 @@ export class MyETPWallet {
 
     setPublicMenu() {
         return Promise.all([
-            { title: 'LOGIN', component: "LoginPage", icon: 'log-in', root: true },
-            { title: 'LANGUAGE_SETTINGS', component: "LanguageSwitcherPage", icon: 'flag' },
+            { title: 'LOGIN', component: "LoginPage", icon: 'wallet', root: true },
+            { title: 'LANGUAGE_SETTINGS', component: "LanguageSwitcherPage", icon: 'wallet' },
         ].map((entry) => this.addToMenu(entry)))
     }
 
