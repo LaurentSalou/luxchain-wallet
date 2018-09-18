@@ -514,6 +514,8 @@
     "CREATE_ASSET.COLOR": "Color",
     "CREATE_ASSET.CONDITION": "Condition",
     "CREATE_ASSET.PURCHASE_PRICE": "Purchase Price",
-    "NEXT": "Next"
+    "NEXT": "Next",
+    "CREATE_ASSET.PRODUCT_INFO": "Product Info",
+    "CREATE_ASSET.OWNER": "Owner"
 
 }

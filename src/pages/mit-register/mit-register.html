@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content>
-    <div class="no-avatar">
+    <div *ngIf="!confirmation">
         <ion-list class="content">
             <ion-row>
                 <ion-col>
@@ -20,19 +20,19 @@
             </ion-item>
             <ion-item *ngIf="models && models.length > 0">
                 <ion-label color="primary">{{"CREATE_ASSET.MODEL"|translate}}</ion-label>
-                <ion-select [(ngModel)]="modelId" name="model" multiple="false" okText="{{'OK'|translate}}" cancelText="{{'CANCEL'|translate}}">
+                <ion-select [(ngModel)]="model.id" name="model" multiple="false" okText="{{'OK'|translate}}" cancelText="{{'CANCEL'|translate}}" (ngModelChange)="onModelChange(model.id)">
                     <ion-option *ngFor="let model of models" value="{{model.id}}">{{model.name}}</ion-option>
                 </ion-select>
             </ion-item>
             <ion-item>
                 <ion-label color="primary">{{"CREATE_ASSET.MATERIAL"|translate}}</ion-label>
-                <ion-select [(ngModel)]="materialId" name="material" multiple="false" okText="{{'OK'|translate}}" cancelText="{{'CANCEL'|translate}}">
+                <ion-select [(ngModel)]="material.id" name="material" multiple="false" okText="{{'OK'|translate}}" cancelText="{{'CANCEL'|translate}}" (ngModelChange)="onMaterialChange(material.id)">
                     <ion-option *ngFor="let material of bags_info.material" value="{{material.id}}">{{material.name}}</ion-option>
                 </ion-select>
             </ion-item>
             <ion-item>
                 <ion-label color="primary">{{"CREATE_ASSET.LOCATION"|translate}}</ion-label>
-                <ion-select [(ngModel)]="countryId" name="material" multiple="false" okText="{{'OK'|translate}}" cancelText="{{'CANCEL'|translate}}">
+                <ion-select [(ngModel)]="country.id" name="material" multiple="false" okText="{{'OK'|translate}}" cancelText="{{'CANCEL'|translate}}" (ngModelChange)="onCountryChange(country.id)">
                     <ion-option *ngFor="let country of bags_info.countries" value="{{country.id}}">{{country.name}}</ion-option>
                 </ion-select>
             </ion-item>
@@ -42,13 +42,13 @@
             </ion-item>
             <ion-item>
                 <ion-label color="primary">{{"CREATE_ASSET.COLOR"|translate}}</ion-label>
-                <ion-select [(ngModel)]="colorId" name="color" multiple="false" okText="{{'OK'|translate}}" cancelText="{{'CANCEL'|translate}}">
+                <ion-select [(ngModel)]="color.id" name="color" multiple="false" okText="{{'OK'|translate}}" cancelText="{{'CANCEL'|translate}}" (ngModelChange)="onColorChange(color.id)">
                     <ion-option *ngFor="let color of bags_info.color" value="{{color.id}}">{{color.name}}</ion-option>
                 </ion-select>
             </ion-item>
             <ion-item>
                 <ion-label color="primary">{{"CREATE_ASSET.CONDITION"|translate}}</ion-label>
-                <ion-select [(ngModel)]="conditionId" name="condition" multiple="false" okText="{{'OK'|translate}}" cancelText="{{'CANCEL'|translate}}">
+                <ion-select [(ngModel)]="condition.id" name="condition" multiple="false" okText="{{'OK'|translate}}" cancelText="{{'CANCEL'|translate}}" (ngModelChange)="onConditionChange(condition.id)">
                     <ion-option *ngFor="let condition of bags_info.condition" value="{{condition.id}}">{{condition.name}}</ion-option>
                 </ion-select>
             </ion-item>
@@ -61,13 +61,77 @@
         <div class="btn-container">
             <ion-row>
                 <ion-col>
-                    <button ion-button full color="secondary" (click)="confirm()" icon-left>
+                    <button ion-button full color="secondary" (click)="cancel($event)" icon-left>
                         {{'CANCEL'|translate}}
                     </button>
                 </ion-col>
                 <ion-col>
-                    <button ion-button full item-right icon-left (click)="cancel($event)">
+                    <button ion-button full item-right icon-left (click)="confirm()">
                         {{'NEXT'|translate}}
+                    </button>
+                </ion-col>
+            </ion-row>
+        </div>
+    </div>
+    <div *ngIf="confirmation">
+        <ion-list class="content">
+            <ion-item-divider class="confirmation-header">
+                {{'CREATE_ASSET.PRODUCT_INFO'|translate}}
+            </ion-item-divider>
+            <ion-item>
+                <span class="field-text">{{'CREATE_ASSET.BRAND'|translate}}: </span>
+                <span class="field-value">{{selectedBrand.name}}</span>
+            </ion-item>
+            <ion-item>
+                <span class="field-text">{{'CREATE_ASSET.MODEL'|translate}}: </span>
+                <span class="field-value">{{selectedModel.name}}</span>
+            </ion-item>
+            <ion-item>
+                <span class="field-text">{{'CREATE_ASSET.MATERIAL'|translate}}: </span>
+                <span class="field-value">{{selectedMaterial.name}}</span>
+            </ion-item>
+            <ion-item>
+                <span class="field-text">{{'CREATE_ASSET.LOCATION'|translate}}: </span>
+                <span class="field-value">{{selectedCountry.name}}</span>
+            </ion-item>
+            <ion-item>
+                <span class="field-text">{{'CREATE_ASSET.SERIAL_NUMBER'|translate}}: </span>
+                <span class="field-value">{{serialNumber}}</span>
+            </ion-item>
+            <ion-item>
+                <span class="field-text">{{'CREATE_ASSET.COLOR'|translate}}: </span>
+                <span class="field-value">{{selectedColor.name}}</span>
+            </ion-item>
+            <ion-item>
+                <span class="field-text">{{'CREATE_ASSET.CONDITION'|translate}}: </span>
+                <span class="field-value">{{selectedCondition.name}}</span>
+            </ion-item>
+            <ion-item>
+                <span class="field-text">{{'CREATE_ASSET.PURCHASE_PRICE'|translate}}: </span>
+                <span class="field-value">{{price}}</span>
+            </ion-item>
+            <ion-item>
+                <span class="field-text">{{'CREATE_ASSET.OWNER'|translate}}: </span>
+                <span class="field-value">{{avatars[0].symbol}}</span>
+            </ion-item>
+        </ion-list>
+        <ion-list class="password">
+            <ion-item [ngClass]="{'error-border': !validPassword(passphrase)}">
+                <ion-label color="primary" floating>{{"PASSWORD" | translate}}</ion-label>
+                <ion-input name="passphrase" type="password" [(ngModel)]="passphrase" required></ion-input>
+            </ion-item>
+            <br>
+        </ion-list>
+        <div class="btn-container">
+            <ion-row>
+                <ion-col>
+                    <button ion-button full color="secondary" (click)="confirmation = false" icon-left>
+                        {{'BACK'|translate}}
+                    </button>
+                </ion-col>
+                <ion-col>
+                    <button ion-button full item-right icon-left (click)="create()">
+                        {{'CONFIRM'|translate}}
                     </button>
                 </ion-col>
             </ion-row>

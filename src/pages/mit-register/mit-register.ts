@@ -28,7 +28,17 @@ export class MITRegisterPage {
 
     bags_info: any;
     brand: any = {};
+    model: any = {};
+    material: any = {};
+    country: any = {};
+    color: any = {};
+    condition: any = {};
     selectedBrand: any = {};
+    selectedModel: any = {};
+    selectedMaterial: any = {};
+    selectedCountry: any = {};
+    selectedColor: any = {};
+    selectedCondition: any = {};
     models: any = {};
     modelId: number;
     materialId: string;
@@ -37,6 +47,7 @@ export class MITRegisterPage {
     colorId: string;
     conditionId: string;
     price: number;
+    confirmation: boolean = false;
 
 
     constructor(
@@ -97,7 +108,7 @@ export class MITRegisterPage {
         this.navCtrl.pop();
     }
 
-    validPassword = (passphrase) => (passphrase.length > 0)
+    validPassword = (passphrase) => (passphrase.length > 7)
 
     validSymbol = (symbol) => /^[A-Za-z0-9._\-]{3,64}$/g.test(symbol) && this.list_all_mits.indexOf(symbol) == -1
 
@@ -111,8 +122,8 @@ export class MITRegisterPage {
         return this.alert.showLoading()
             .then(() => this.mvs.createRegisterMITTx(
                 this.passphrase,
-                this.recipient_address,
-                this.recipient_avatar,
+                this.avatars[0].address,
+                this.avatars[0].symbol,
                 this.symbol,
                 this.content,
                 undefined,
@@ -120,6 +131,7 @@ export class MITRegisterPage {
             )
             .then(tx => this.mvs.send(tx))
             .then((result) => {
+                this.navCtrl.pop()
                 this.navCtrl.pop()
                 this.translate.get('SUCCESS_SEND_TEXT').subscribe((message: string) => {
                     this.showSent(message, result.hash)
@@ -217,6 +229,62 @@ export class MITRegisterPage {
                 this.models = brand.models;
             }
         })
+    }
+
+    onModelChange(modelId) {
+        this.models.forEach((model) => {
+            if(model.id == modelId) {
+                this.selectedModel = model;
+            }
+        })
+    }
+
+    onMaterialChange(materialId) {
+        this.bags_info.material.forEach((material) => {
+            if(material.id == materialId) {
+                this.selectedMaterial = material;
+            }
+        })
+    }
+
+    onCountryChange(countryId) {
+        this.bags_info.countries.forEach((country) => {
+            if(country.id == countryId) {
+                this.selectedCountry = country;
+            }
+        })
+    }
+
+    onColorChange(colorId) {
+        this.bags_info.color.forEach((color) => {
+            if(color.id == colorId) {
+                this.selectedColor = color;
+            }
+        })
+    }
+
+    onConditionChange(conditionId) {
+        this.bags_info.condition.forEach((condition) => {
+            if(condition.id == conditionId) {
+                this.selectedCondition = condition;
+            }
+        })
+    }
+
+    confirm () {
+        let content = {
+            "brand": this.selectedBrand.name,
+            "model": this.selectedModel.name,
+            "material": this.selectedMaterial.name,
+            "country": this.selectedCountry.name,
+            "serial_number": this.serialNumber,
+            "color": this.selectedColor.name
+        }
+        this.content = JSON.stringify(content);
+        let timestamp = new Date().getTime();
+        this.symbol = "LUXCHAIN." + timestamp;
+        console.log(this.symbol)
+        this.confirmation = true;
     }
 
 }

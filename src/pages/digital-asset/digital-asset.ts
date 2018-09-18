@@ -107,6 +107,7 @@ export class DigitalAssetPage {
         return this.mvs.getBalances()
             .then((_) => {
                 this.balances = _
+                console.log(_)
                 return Promise.all(Object.keys(_.MST).map((symbol) => this.mvs.addAssetToAssetOrder(symbol)))
             })
             .then(() => this.mvs.assetOrder())

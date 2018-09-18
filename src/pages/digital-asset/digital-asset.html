@@ -18,7 +18,7 @@
         <ion-grid>
             <h2 [translate]="'DIGITAL_ASSET.TITLE'" class="page-title"></h2>
             <ion-row *ngIf="balances != undefined && balances.MIT != undefined">
-                <ng-container *ngFor="let asset of balances.MIT" class="asset-container">
+                <ng-container *ngFor="let mit of balances.MIT" class="asset-container">
                     <ion-col class="asset-container">
                         <digital-asset-card [avatar]="mit.owner" [symbol]="mit.symbol"></digital-asset-card>
                     </ion-col>
