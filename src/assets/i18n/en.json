@@ -503,6 +503,17 @@
     "DIGITAL_ASSET.CREATE_BTN": "Create Digital Asset",
     "CREATE_DID_FIRST_TITLE": "No Digital ID",
     "CREATE_DID_FIRST_BODY": "Please create a Digital ID first",
-    "CREATE_DID.CREATE_ASSET_BTN": "Create Digital Asset"
+    "CREATE_DID.CREATE_ASSET_BTN": "Create Digital Asset",
+    "CREATE_ASSET.TITLE": "Enter Product Info",
+    "CREATE_ASSET.INFORMATION": "A Digital Asset represents a verified luxury product. It is a portfolio that contains information and history about the product. You can transfer ownership of Digital Assets to others.",
+    "CREATE_ASSET.BRAND": "Brand",
+    "CREATE_ASSET.MODEL": "Model",
+    "CREATE_ASSET.MATERIAL": "Material",
+    "CREATE_ASSET.LOCATION": "Product Location",
+    "CREATE_ASSET.SERIAL_NUMBER": "Serial Number",
+    "CREATE_ASSET.COLOR": "Color",
+    "CREATE_ASSET.CONDITION": "Condition",
+    "CREATE_ASSET.PURCHASE_PRICE": "Purchase Price",
+    "NEXT": "Next"
 
 }

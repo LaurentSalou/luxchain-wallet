@@ -26,9 +26,8 @@
 
 .scroll-content {
     top: -5px;
-    padding-top: 5px !important;
+    padding-top: 30px !important;
     background-color: #F5F5F5;
-    padding-top: 20px;
 }
 
 .menu-inner .scroll-content {
@@ -50,7 +49,7 @@
     color: orange;
 }
 
-.item.item-select:not(.error-border):not(.no-color-border) .item-inner .ng-valid .item-cover{
+/*.item.item-select:not(.error-border):not(.no-color-border) .item-inner .ng-valid .item-cover{
     border-bottom-color: #32db64 !important;
     -webkit-box-shadow: inset 0 -1px 0 0 #32db64 !important;
     box-shadow: inset 0 -1px 0 0 #32db64 !important;
@@ -62,7 +61,7 @@
     border-bottom-color: #32db64 !important;
     -webkit-box-shadow: inset 0 -1px 0 0 #32db64 !important;
     box-shadow: inset 0 -1px 0 0 #32db64 !important;
-}
+}*/
 
 .valid-input{
     color: #32db64;
@@ -369,4 +368,20 @@ ion-list-header{
 
 .item {
     padding-left: 0;
+}
+
+.content {
+    background-color: #FFFFFF;
+    font-weight: 300;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+
+.item-select {
+    margin-top: 20px;
+}
+
+.item-select .label {
+    margin-bottom: 0px;
 }

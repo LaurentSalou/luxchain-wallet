@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController, Platform, Loading
 import { TranslateService } from '@ngx-translate/core';
 import { AlertProvider } from '../../providers/alert/alert';
 import { MvsServiceProvider } from '../../providers/mvs-service/mvs-service';
+import { AppGlobals } from '../../app/app.global';
 
 @IonicPage()
 @Component({
@@ -25,6 +26,19 @@ export class MITRegisterPage {
     list_all_mits: Array<string> = [];
     fee: number = 10000
 
+    bags_info: any;
+    brand: any = {};
+    selectedBrand: any = {};
+    models: any = {};
+    modelId: number;
+    materialId: string;
+    countryId: string;
+    serialNumber: number;
+    colorId: string;
+    conditionId: string;
+    price: number;
+
+
     constructor(
         public navCtrl: NavController,
         private alertCtrl: AlertController,
@@ -32,7 +46,13 @@ export class MITRegisterPage {
         public platform: Platform,
         public navParams: NavParams,
         private translate: TranslateService,
-        private mvs: MvsServiceProvider) {
+        private mvs: MvsServiceProvider,
+        private globals: AppGlobals) {
+
+        //TODO get this info from server
+        this.bags_info = this.globals.bags_info
+
+        console.log(this.bags_info)
 
         this.recipient_avatar = this.navParams.get('avatar_name')
         this.recipient_address = this.navParams.get('avatar_address')
@@ -189,4 +209,14 @@ export class MITRegisterPage {
             }
         })
     }
+
+    onBrandChange(brandId) {
+        this.bags_info.brand.forEach((brand) => {
+            if(brand.id == brandId) {
+                this.selectedBrand = brand;
+                this.models = brand.models;
+            }
+        })
+    }
+
 }
