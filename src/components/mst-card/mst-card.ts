@@ -9,7 +9,6 @@ export class MSTCardComponent {
 
     @Input() balance: any;
     @Input() symbol: string;
-    @Input() theme: string;
     @Input() icon: string;
     @Input() swap: boolean;
 

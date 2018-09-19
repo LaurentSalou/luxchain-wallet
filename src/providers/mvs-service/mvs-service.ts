@@ -15,12 +15,7 @@ export class MvsServiceProvider {
     DEFAULT_BALANCES = {
         ETP: { frozen: 0, available: 0, decimals: 8 },
         MST: {
-            "PARCELX.GPX": { frozen: 0, available: 0, decimals: 8 },
-            "RIGHTBTC.RT": { frozen: 0, available: 0, decimals: 4 },
-            "MVS.ZGC": { frozen: 0, available: 0, decimals: 8 },
-            "MVS.ZDC": { frozen: 0, available: 0, decimals: 6 },
-            "CSD.CSD": { frozen: 0, available: 0, decimals: 8 },
-            "SDG": { frozen: 0, available: 0, decimals: 8 }
+            "LUXCHAIN.LXR": { frozen: 0, available: 0, decimals: 8 }
         },
         MIT: []
     }

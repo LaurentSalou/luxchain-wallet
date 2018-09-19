@@ -28,6 +28,15 @@
     <div class="mini-loader" *ngIf="syncing&&balances==undefined"></div>
     <ion-list no-lines *ngIf="!syncing||balances!=undefined">
         <ion-grid>
+
+
+            <ion-row *ngIf="balances!=undefined">
+                <ng-container class="asset-container">
+                    <ion-col *ngIf="balances.MST['LUXCHAIN.LXR']!==undefined" class="asset-container">
+                        <mst-card [balance]="balances.MST['LUXCHAIN.LXR']" [symbol]="'LUXCHAIN.LXR'" [icon]="'LUXCHAIN.LXR'" [swap]="false"></mst-card>
+                    </ion-col>
+                </ng-container>
+            </ion-row>
             <ion-row>
                 <ng-container class="asset-container">
                     <ion-col class="asset-container">
@@ -35,16 +44,7 @@
                     </ion-col>
                 </ng-container>
             </ion-row>
-            <h2 [translate]="'HEADLINE_MST'"></h2>
-            <ion-row *ngIf="balances!=undefined">
-                <ng-container *ngFor="let asset of balancesKeys" class="asset-container">
-                    <ion-col *ngIf="balances.MST[asset]!==undefined" class="asset-container">
-                        <mst-card [balance]="balances.MST[asset]" [symbol]="asset" [theme]="theme" [icon]="icons[asset]" [swap]="whitelist.indexOf(asset) > -1"></mst-card>
-                    </ion-col>
-                </ng-container>
-            </ion-row>
-            <br>
-            <h2 [translate]="'HEADLINE_MIT'"></h2>
+            <!--h2 [translate]="'HEADLINE_MIT'"></h2>
             <div *ngIf="balances!=undefined&&balances.MIT.length==0" [translate]="'NO_MIT_TEXT'"></div>
             <ion-row *ngIf="balances!=undefined">
                 <ng-container *ngFor="let mit of balances.MIT" class="asset-container">
@@ -52,7 +52,7 @@
                         <mit-card [avatar]="mit.owner" [symbol]="mit.symbol"></mit-card>
                     </ion-col>
                 </ng-container>
-            </ion-row>
+            </ion-row-->
         </ion-grid>
     </ion-list>
 </ion-content>
