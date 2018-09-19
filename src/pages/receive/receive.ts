@@ -26,7 +26,8 @@ export class ReceivePage {
         private mvs: MvsServiceProvider
     ) {
         this.addressbalances = {};
-        this.selectedAsset = this.navParams.get('asset')
+        //this.selectedAsset = this.navParams.get('asset')
+        this.selectedAsset = "LUXCHAIN.LXR"
         this.displayType = this.selectedAsset == 'ETP' ? 'ETP' : 'asset'
     }
 
