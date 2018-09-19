@@ -186,5 +186,17 @@ export class AlertProvider {
         })
     }
 
+    showText(title, message) {
+        this.translate.get([title, message, 'OK']).subscribe(translations => {
+            this.alertCtrl.create({
+                title: translations[title],
+                message: translations[message],
+                buttons: [
+                    { text: translations.OK },
+                ]
+            }).present()
+        })
+    }
+
 
 }

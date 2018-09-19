@@ -133,8 +133,10 @@ export class MITRegisterPage {
             .then((result) => {
                 this.navCtrl.pop()
                 this.navCtrl.pop()
-                this.translate.get('SUCCESS_SEND_TEXT').subscribe((message: string) => {
-                    this.showSent(message, result.hash)
+                this.translate.get('SUCCESS_CREATE_ASSET_TITLE').subscribe((title: string) => {
+                    this.translate.get('SUCCESS_CREATE_ASSET_BODY').subscribe((message: string) => {
+                        this.alert.showText(title, message)
+                    })
                 })
             })
             .catch((error) => {
