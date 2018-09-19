@@ -1,29 +1,43 @@
-<ion-card class="card-block">
-    <ion-grid>
-        <ion-row>
-            <ion-col>
-                <ion-item class="grid-info">
-                    <ion-avatar item-start>
-                        <img class="coinlogo default-logo" [src]="'assets/icon/default_mit.png'" (error)="errorImg($event)">
-                    </ion-avatar>
-                    <h1 class="overflow">{{symbol}}</h1>
-                    <h2 class="overflow owner">
-                        {{"OWNER"|translate}}
-                        <span class="avatar">
-                            {{avatar}}
-                        </span>
-                    </h2>
-                </ion-item>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
-</ion-card>
-<ion-row col-12 class="row-buttons">
-    <ion-col col-4></ion-col>
-    <ion-col col-4>
-        <button ion-button full clear color="danger" icon-left (click)="MITTransfer($event)"><ion-icon name="send"></ion-icon>{{ "SEND" | translate }}</button>
-    </ion-col>
-    <ion-col col-4>
-        <button ion-button full clear color="primary" icon-left (click)="MITDetails($event)"><ion-icon name="information-circle"></ion-icon>{{ "INFO" | translate }}</button>
-    </ion-col>
+<ion-row *ngIf="info" class="container">
+    <ion-list class="content">
+        <ion-item-divider class="confirmation-header">
+            {{'CREATE_ASSET.PRODUCT_INFO'|translate}}
+        </ion-item-divider>
+        <ion-item>
+            <span class="field-text">{{'CREATE_ASSET.BRAND'|translate}}: </span>
+            <span *ngIf="info.brand" class="field-value">{{info.brand}}</span>
+        </ion-item>
+        <ion-item>
+            <span class="field-text">{{'CREATE_ASSET.MODEL'|translate}}: </span>
+            <span *ngIf="info.model" class="field-value">{{info.model}}</span>
+        </ion-item>
+        <ion-item>
+            <span class="field-text">{{'CREATE_ASSET.MATERIAL'|translate}}: </span>
+            <span *ngIf="info.material" class="field-value">{{info.material}}</span>
+        </ion-item>
+        <ion-item>
+            <span class="field-text">{{'CREATE_ASSET.LOCATION'|translate}}: </span>
+            <span *ngIf="info.country" class="field-value">{{info.country}}</span>
+        </ion-item>
+        <ion-item>
+            <span class="field-text">{{'CREATE_ASSET.SERIAL_NUMBER'|translate}}: </span>
+            <span *ngIf="info.serial_number" class="field-value">{{info.serial_number}}</span>
+        </ion-item>
+        <ion-item>
+            <span class="field-text">{{'CREATE_ASSET.COLOR'|translate}}: </span>
+            <span *ngIf="info.color" class="field-value">{{info.color}}</span>
+        </ion-item>
+        <ion-item>
+            <span class="field-text">{{'CREATE_ASSET.CONDITION'|translate}}: </span>
+            <span *ngIf="info.condition" class="field-value">{{info.condition}}</span>
+        </ion-item>
+        <ion-item>
+            <span class="field-text">{{'CREATE_ASSET.PURCHASE_PRICE'|translate}}: </span>
+            <span *ngIf="info.price" class="field-value">{{info.price}}</span>
+        </ion-item>
+        <ion-item>
+            <span class="field-text">{{'CREATE_ASSET.OWNER'|translate}}: </span>
+            <span *ngIf="owner" class="field-value">{{owner}}</span>
+        </ion-item>
+    </ion-list>
 </ion-row>

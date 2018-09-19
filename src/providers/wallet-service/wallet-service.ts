@@ -156,4 +156,19 @@ export class WalletServiceProvider {
         return addresses;
     }
 
+    getDigitalAssets() {
+        return this.storage.get('digital_assets')
+            .then((assets) => (assets) ? assets : [])
+    }
+
+    addDigitalAsset(symbol, content) {
+        return this.getDigitalAssets()
+            .then((assets: any) => {
+                if(assets[symbol] == undefined) {
+                    assets[symbol] = content;
+                    this.storage.set('digital_assets', assets)
+                }
+            })
+    }
+
 }

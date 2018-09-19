@@ -487,8 +487,8 @@
 
 
     "LUXCHAIN_WALLET": "Luxchain wallet",
-    "DIGITAL_ASSET": "Digital Asset",
-    "DIGITAL_ASSET.TITLE": "Digital Asset",
+    "DIGITAL_ASSET": "Digital Assets",
+    "DIGITAL_ASSET.TITLE": "Digital Assets",
     "DIGITAL_ID": "Digital ID",
     "DIGITAL_ID.INFORMATION": "A Digital ID represents your identity on LUXCHAIN. Digital ID's are used to create Digital Assets, send and receive LXR, and build reputation on LUXCHAIN. Verifiers use their Digital ID to verify a Digital Asset.",
     "CREATE_DID.SYMBOL": "Digital ID Username",

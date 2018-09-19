@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { AlertProvider } from '../../providers/alert/alert';
 import { MvsServiceProvider } from '../../providers/mvs-service/mvs-service';
 import { AppGlobals } from '../../app/app.global';
+import { WalletServiceProvider } from '../../providers/wallet-service/wallet-service';
 
 @IonicPage()
 @Component({
@@ -17,7 +18,8 @@ export class MITRegisterPage {
     passphrase: string = ""
     recipient_address: string = ""
     recipient_avatar: string = ""
-    content: string = ""
+    content: string = ""        //content set on the blockchain, in the MITs
+    info: any = {}              //info stored in the cache and sent to the server
     loading: Loading
     addressbalances: Array<any>
     avatars: Array<any>;
@@ -58,7 +60,8 @@ export class MITRegisterPage {
         public navParams: NavParams,
         private translate: TranslateService,
         private mvs: MvsServiceProvider,
-        private globals: AppGlobals) {
+        private globals: AppGlobals,
+        private wallet: WalletServiceProvider) {
 
         //TODO get this info from server
         this.bags_info = this.globals.bags_info
@@ -131,6 +134,7 @@ export class MITRegisterPage {
             )
             .then(tx => this.mvs.send(tx))
             .then((result) => {
+                this.wallet.addDigitalAsset(this.symbol, this.info)
                 this.navCtrl.pop()
                 this.navCtrl.pop()
                 this.translate.get('SUCCESS_CREATE_ASSET_TITLE').subscribe((title: string) => {
@@ -274,6 +278,7 @@ export class MITRegisterPage {
     }
 
     confirm () {
+        //symbol and content used in the MIT, on the blockchain
         let content = {
             "brand": this.selectedBrand.name,
             "model": this.selectedModel.name,
@@ -282,10 +287,20 @@ export class MITRegisterPage {
             "serial_number": this.serialNumber,
             "color": this.selectedColor.name
         }
-        this.content = JSON.stringify(content);
+        this.content = JSON.stringify(content)
         let timestamp = new Date().getTime();
         this.symbol = "LUXCHAIN." + timestamp;
-        console.log(this.symbol)
+
+        //info saved in the cache and sent to the server
+        this.info['brand'] = this.selectedBrand.name
+        this.info['model'] = this.selectedModel.name
+        this.info['material'] = this.selectedMaterial.name
+        this.info['country'] = this.selectedCountry.name
+        this.info['serial_number'] = this.serialNumber
+        this.info['color'] = this.selectedColor.name
+        this.info['condition'] = this.selectedCondition.name
+        this.info['price'] = this.price
+
         this.confirmation = true;
     }
 

@@ -43,6 +43,7 @@ export class DigitalAssetPage {
     domains: any = []
     avatars: Array<any>;
     no_avatar: boolean = true;
+    digital_assets: any
 
     private syncinterval: any;
 
@@ -87,6 +88,9 @@ export class DigitalAssetPage {
 
         this.loadAvatars()
             .catch(console.error);
+
+        this.wallet.getDigitalAssets()
+            .then((assets) => this.digital_assets = assets)
     }
 
     ionViewWillLeave = () => clearInterval(this.syncinterval)

@@ -9,7 +9,7 @@
         <ion-buttons end class="right-btn">
             <ion-spinner *ngIf="isSyncing()"></ion-spinner>
             <ion-icon *ngIf="isOffline()" name="flash" class="offlineIcon"></ion-icon>
-            <button *ngIf="!isSyncing() && !platform.is('mobile')" ion-button (click)="sync()" icon-left>
+            <button *ngIf="!isSyncing()" ion-button (click)="sync()" icon-left>
               <span><span class="height-text">{{height}}</span> <ion-icon name="cube"></ion-icon></span>
             </button>
             <!--button ion-button icon-left>
