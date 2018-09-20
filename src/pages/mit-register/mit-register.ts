@@ -28,7 +28,7 @@ export class MITRegisterPage {
     list_all_mits: Array<string> = [];
     fee: number = 10000
 
-    bags_info: any;
+    bags_info: any = {};
     brand: any = {};
     model: any = {};
     material: any = {};
@@ -63,11 +63,6 @@ export class MITRegisterPage {
         private globals: AppGlobals,
         private wallet: WalletServiceProvider) {
 
-        //TODO get this info from server
-        this.bags_info = this.globals.bags_info
-
-        console.log(this.bags_info)
-
         this.recipient_avatar = this.navParams.get('avatar_name')
         this.recipient_address = this.navParams.get('avatar_address')
         if(!this.recipient_address) {
@@ -100,6 +95,10 @@ export class MITRegisterPage {
                 }
                 this.addressbalances = addrblncs
             })
+
+        this.wallet.getAssetsInfo()
+            .subscribe((data) => this.bags_info = data.json());
+
     }
 
     ionViewDidLoad() {
