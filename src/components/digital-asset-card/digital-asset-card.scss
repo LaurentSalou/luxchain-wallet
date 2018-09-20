@@ -18,10 +18,16 @@ digital-asset-card {
         padding-bottom: 4px;
         font-size: 1.4rem;
         float: right;
+        padding-right: 0;
     }
 
     .confirmation-header .label {
         height: 24px;
+    }
+
+    .confirmation-header img {
+        padding-left: 10px;
+        margin-right: 0;
     }
 
     .field-text {
@@ -32,5 +38,13 @@ digital-asset-card {
     .field-value {
         font-size: 22px;
         color: #4D4D4D;
+    }
+
+    .sell-btn {
+        height: 50px;
+    }
+
+    .list {
+        padding-bottom: 0;
     }
 }

@@ -15,18 +15,16 @@
     </ion-refresher>
     <div class="mini-loader" *ngIf="syncing&&balances==undefined"></div>
     <ion-list no-lines *ngIf="!syncing||balances!=undefined">
-        <ion-grid>
-            <h2 [translate]="'DIGITAL_ASSET.TITLE'" class="page-title"></h2>
-            <ion-row *ngIf="balances != undefined && balances.MIT != undefined">
-                <ng-container *ngFor="let mit of balances.MIT" class="asset-container">
-                    <digital-asset-card [info]="digital_assets[mit.symbol]" [owner]="mit.owner" [symbol]="mit.symbol"></digital-asset-card>
-                </ng-container>
-            </ion-row>
-            <ion-row *ngIf="balances == undefined || balances.MIT == undefined || balances.MIT.length == 0">
-                <img class="no-asset-img" [src]="'assets/icon/no_digital_asset.png'">
-                <h2 class="no-asset-txt">{{"DIGITAL_ASSET.NO_ASSET" | translate}}</h2>
-            </ion-row>
-        </ion-grid>
+        <h2 [translate]="'DIGITAL_ASSET.TITLE'" class="page-title"></h2>
+        <ion-row *ngIf="balances != undefined && balances.MIT != undefined">
+            <ng-container *ngFor="let mit of balances.MIT" class="asset-container">
+                <digital-asset-card [info]="digital_assets[mit.symbol]" [owner]="mit.owner" [symbol]="mit.symbol"></digital-asset-card>
+            </ng-container>
+        </ion-row>
+        <ion-row *ngIf="balances == undefined || balances.MIT == undefined || balances.MIT.length == 0">
+            <img class="no-asset-img" [src]="'assets/icon/no_digital_asset.png'">
+            <h2 class="no-asset-txt">{{"DIGITAL_ASSET.NO_ASSET" | translate}}</h2>
+        </ion-row>
     </ion-list>
 </ion-content>
 <ion-footer class="footer">

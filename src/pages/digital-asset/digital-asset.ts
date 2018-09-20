@@ -115,17 +115,19 @@ export class DigitalAssetPage {
                 this.balances = _
                 console.log(_)
                 Promise.all(_.MIT.map((mit) => {
-                    console.log(mit)
                     if(mit.symbol.split('.')[0] == this.prefix && this.digital_assets[mit.symbol] == undefined) {
                         return this.wallet.getAssetInfo(mit.symbol)
                             .subscribe(
-                                (data) => this.digital_assets[mit.symbol] = data.json(),
+                                (data) => {
+                                    this.digital_assets[mit.symbol] = data.json()
+                                    this.wallet.addDigitalAsset(mit.symbol, data.json())
+                                    console.log(this.digital_assets)
+                                },
                                 (err) => console.log("Symbol " + mit.symbol + " not found."));
                     } else {
                         return
                     }
                 }))
-                .then(() => console.log("All done"))
                 /*return _.MIT.forEach((mit) => {
                     console.log(mit)
                     if(mit.symbol.split('.')[0] == this.prefix && this.digital_assets[mit.symbol] == undefined) {

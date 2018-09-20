@@ -5,14 +5,15 @@
             <button ion-button clear color="primary" icon-left (click)="showMore = !showMore">
                 <span *ngIf="showMore">
                     {{ "COLLAPSE" | translate }}
-                    <img [src]="'assets/icon/collapse.png'">
                 </span>
+                <img *ngIf="showMore" [src]="'assets/icon/collapse.png'">
                 <span *ngIf="!showMore">
                     {{ "VIEW_MORE" | translate }}
-                    <img [src]="'assets/icon/viewmore.png'">
                 </span>
+                <img *ngIf="!showMore" [src]="'assets/icon/viewmore.png'">
             </button>
         </ion-item-divider>
+        <ion-item-divider>
         <ion-item>
             <span class="field-text">{{'CREATE_ASSET.BRAND'|translate}}: </span>
             <span *ngIf="info.brand" class="field-value">{{info.brand}}</span>
@@ -51,5 +52,7 @@
                 <span *ngIf="owner" class="field-value">{{owner}}</span>
             </ion-item>
         </div>
+        </ion-item-divider>
+        <button ion-button full clear (click)="MITTransfer($event)" class="sell-btn">{{ "SELL" | translate }}</button>
     </ion-list>
 </ion-row>

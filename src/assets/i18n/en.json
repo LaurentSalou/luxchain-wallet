@@ -520,6 +520,7 @@
     "SUCCESS_CREATE_ASSET_TITLE": "Digital Asset created",
     "SUCCESS_CREATE_ASSET_BODY": "The Digital Asset has been successfully created",
     "VIEW_MORE": "View more",
-    "Collapse": "Collapse"
+    "Collapse": "Collapse",
+    "SELL": "Sell"
 
 }
