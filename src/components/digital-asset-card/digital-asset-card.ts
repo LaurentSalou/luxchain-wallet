@@ -10,6 +10,7 @@ export class DigitalAssetCardComponent {
     @Input() info: any;
     @Input() owner: string;
     @Input() symbol: string;
+    showMore: boolean = false;
 
     constructor(
         private nav: NavController

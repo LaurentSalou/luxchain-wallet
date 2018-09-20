@@ -96,7 +96,7 @@ export class MITRegisterPage {
                 this.addressbalances = addrblncs
             })
 
-        this.wallet.getAssetsInfo()
+        this.wallet.getAssetsParameters()
             .subscribe((data) => this.bags_info = data.json());
 
     }
@@ -133,6 +133,8 @@ export class MITRegisterPage {
             )
             .then(tx => this.mvs.send(tx))
             .then((result) => {
+                this.wallet.postAssetInfo(this.info)
+                    .subscribe((result) => console.log(result));
                 this.wallet.addDigitalAsset(this.symbol, this.info)
                 this.navCtrl.pop()
                 this.navCtrl.pop()
@@ -291,14 +293,22 @@ export class MITRegisterPage {
         this.symbol = "LUXCHAIN." + timestamp;
 
         //info saved in the cache and sent to the server
+        this.info['hash'] = this.symbol
         this.info['brand'] = this.selectedBrand.name
+        this.info['brand_id'] = this.selectedBrand.id
         this.info['model'] = this.selectedModel.name
+        this.info['model_id'] = this.selectedModel.id
         this.info['material'] = this.selectedMaterial.name
+        this.info['material_id'] = this.selectedMaterial.id
         this.info['country'] = this.selectedCountry.name
+        this.info['country_id'] = this.selectedCountry.id
         this.info['serial_number'] = this.serialNumber
         this.info['color'] = this.selectedColor.name
+        this.info['color_id'] = this.selectedColor.id
         this.info['condition'] = this.selectedCondition.name
+        this.info['condition_id'] = this.selectedCondition.id
         this.info['price'] = this.price
+        this.info['image'] = []
 
         this.confirmation = true;
     }

@@ -171,8 +171,16 @@ export class WalletServiceProvider {
             })
     }
 
-    getAssetsInfo() {
+    getAssetsParameters() {
         return this.http.get("http://biapi-test.luxsens.com/api/mvs/metadata");
+    }
+
+    postAssetInfo(asset) {
+        return this.http.post("http://biapi-test.luxsens.com/api/mvs/mit", asset);
+    }
+
+    getAssetInfo(symbol) {
+        return this.http.get("http://biapi-test.luxsens.com/api/mvs/mit/" + symbol)
     }
 
 }

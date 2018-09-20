@@ -44,6 +44,7 @@ export class DigitalAssetPage {
     avatars: Array<any>;
     no_avatar: boolean = true;
     digital_assets: any
+    prefix: string = 'LUXCHAIN'
 
     private syncinterval: any;
 
@@ -89,8 +90,7 @@ export class DigitalAssetPage {
         this.loadAvatars()
             .catch(console.error);
 
-        this.wallet.getDigitalAssets()
-            .then((assets) => this.digital_assets = assets)
+
     }
 
     ionViewWillLeave = () => clearInterval(this.syncinterval)
@@ -108,13 +108,36 @@ export class DigitalAssetPage {
     }
 
     private showBalances() {
-        return this.mvs.getBalances()
+        return this.wallet.getDigitalAssets()
+            .then((assets) => this.digital_assets = assets)
+            .then(() => this.mvs.getBalances())
             .then((_) => {
                 this.balances = _
                 console.log(_)
-                return Promise.all(Object.keys(_.MST).map((symbol) => this.mvs.addAssetToAssetOrder(symbol)))
+                Promise.all(_.MIT.map((mit) => {
+                    console.log(mit)
+                    if(mit.symbol.split('.')[0] == this.prefix && this.digital_assets[mit.symbol] == undefined) {
+                        return this.wallet.getAssetInfo(mit.symbol)
+                            .subscribe(
+                                (data) => this.digital_assets[mit.symbol] = data.json(),
+                                (err) => console.log("Symbol " + mit.symbol + " not found."));
+                    } else {
+                        return
+                    }
+                }))
+                .then(() => console.log("All done"))
+                /*return _.MIT.forEach((mit) => {
+                    console.log(mit)
+                    if(mit.symbol.split('.')[0] == this.prefix && this.digital_assets[mit.symbol] == undefined) {
+                        this.wallet.getAssetInfo(mit.symbol)
+                            .subscribe(
+                                (data) => this.digital_assets[mit.symbol] = data.json(),
+                                (err) => console.log("Symbol " + mit.symbol + " not found."));
+                    }
+                })*/
+                //return Promise.all(Object.keys(_.MIT).map((symbol) => console.log(_.MIT[symbol])))
             })
-            .then(() => this.mvs.assetOrder())
+            /*.then(() => this.mvs.assetOrder())
             .then((order) => {
                 this.loading = false
                 this.balancesKeys = order
@@ -126,7 +149,7 @@ export class DigitalAssetPage {
                     this.icons[symbol] = iconsList.indexOf(symbol) !== -1 ? symbol : 'default_mst'
                     this.domains[symbol] = symbol.split('.')[0]
                 })
-            })
+            })*/
             .catch((e) => {
                 console.error(e)
                 console.log("Can't load balances")
