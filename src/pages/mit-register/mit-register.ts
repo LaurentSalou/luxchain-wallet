@@ -3,8 +3,10 @@ import { IonicPage, NavController, NavParams, AlertController, Platform, Loading
 import { TranslateService } from '@ngx-translate/core';
 import { AlertProvider } from '../../providers/alert/alert';
 import { MvsServiceProvider } from '../../providers/mvs-service/mvs-service';
-import { AppGlobals } from '../../app/app.global';
 import { WalletServiceProvider } from '../../providers/wallet-service/wallet-service';
+import { Camera, CameraOptions } from '@ionic-native/camera';
+/*import { ImagePicker } from '@ionic-native/image-picker';
+import { Base64 } from '@ionic-native/base64';*/
 
 @IonicPage()
 @Component({
@@ -50,6 +52,14 @@ export class MITRegisterPage {
     conditionId: string;
     price: number;
     confirmation: boolean = false;
+    base64Image: string;
+    options: CameraOptions = {
+        quality: 100,
+        destinationType: this.camera.DestinationType.FILE_URI,
+        encodingType: this.camera.EncodingType.JPEG,
+        mediaType: this.camera.MediaType.PICTURE
+    }
+    pictures: Array<any> = []
 
 
     constructor(
@@ -60,8 +70,10 @@ export class MITRegisterPage {
         public navParams: NavParams,
         private translate: TranslateService,
         private mvs: MvsServiceProvider,
-        private globals: AppGlobals,
-        private wallet: WalletServiceProvider) {
+        private camera: Camera,
+        private wallet: WalletServiceProvider/*,
+        private imagePicker: ImagePicker,
+        private base64: Base64*/) {
 
         this.recipient_avatar = this.navParams.get('avatar_name')
         this.recipient_address = this.navParams.get('avatar_address')
@@ -119,6 +131,37 @@ export class MITRegisterPage {
     validName = (recipient_avatar) => (recipient_avatar !== undefined && recipient_avatar.length > 0)
 
     validAddress = (recipient_address) => (recipient_address !== undefined && recipient_address.length > 0)
+
+
+
+    takePicture(){
+        //this.camera.takePicture();
+        this.camera.getPicture(this.options).then((imageData) => {
+            this.pictures.push(imageData)
+            // imageData is either a base64 encoded string or a file URI
+            // If it's base64 (DATA_URL):
+            //let base64Image = 'data:image/jpeg;base64,' + imageData;
+        }, (err) => {
+          // Handle error
+        });
+    }
+
+    getPhoto() {
+        let options = {
+            maximumImagesCount: 8
+        };
+        /*this.imagePicker.getPictures(options).then((results) => {
+            for (var i = 0; i < results.length; i++) {
+                //this.imgPreview = results[i];
+                this.base64.encodeFile(results[i]).then((base64File: string) => {
+                    //this.regData.avatar = base64File;
+                    this.pictures.push(base64File)
+                }, (err) => {
+                    console.log(err);
+                });
+            }
+        }, (err) => { });*/
+    }
 
     create() {
         return this.alert.showLoading()

@@ -521,6 +521,8 @@
     "SUCCESS_CREATE_ASSET_BODY": "The Digital Asset has been successfully created",
     "VIEW_MORE": "View more",
     "Collapse": "Collapse",
-    "SELL": "Sell"
+    "SELL": "Sell",
+    "SELL_ASSET": "Sell Digital Asset",
+    "CREATE_ASSET.ADD_PICTURE": "Add Photo"
 
 }

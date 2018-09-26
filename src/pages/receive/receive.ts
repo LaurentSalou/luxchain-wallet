@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { IonicPage, NavController, Platform } from 'ionic-angular';
 import { MvsServiceProvider } from '../../providers/mvs-service/mvs-service';
 
 @IonicPage({
@@ -21,12 +21,10 @@ export class ReceivePage {
 
     constructor(
         private navCtrl: NavController,
-        private navParams: NavParams,
         private platform: Platform,
         private mvs: MvsServiceProvider
     ) {
         this.addressbalances = {};
-        //this.selectedAsset = this.navParams.get('asset')
         this.selectedAsset = "LUXCHAIN.LXR"
         this.displayType = this.selectedAsset == 'ETP' ? 'ETP' : 'asset'
     }

@@ -125,8 +125,8 @@ export class MyETPWallet {
                     { title: 'ACCOUNT.TITLE', component: "AccountPage", icon: 'portfolio', root: true },
                     { title: 'DIGITAL_ID', component: "AvatarsPage", icon: 'digital_id' },
                     { title: 'DIGITAL_ASSET', component: "DigitalAssetPage", icon: 'digital_asset' },
-                    { title: 'LANGUAGE_SETTINGS', component: "LanguageSwitcherPage", icon: 'wallet' },
-                    { title: 'SETTINGS', component: "SettingsPage", icon: 'wallet' },
+                    { title: 'LANGUAGE_SETTINGS', component: "LanguageSwitcherPage", icon: 'language' },
+                    { title: 'SETTINGS', component: "SettingsPage", icon: 'settings' },
                     { title: 'LOGOUT', component: "Logout", icon: 'logout' }
                 ].concat(plugins).map((entry) => this.addToMenu(entry)))
             });

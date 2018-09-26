@@ -7,11 +7,24 @@
 <ion-content>
     <div *ngIf="!confirmation">
         <ion-list class="content">
-            <ion-row>
+            <ion-item-divider>
                 <ion-col>
                     <p align="center">{{"CREATE_ASSET.INFORMATION" | translate}}</p>
                 </ion-col>
-            </ion-row>
+            </ion-item-divider>
+            <ion-item-divider>
+                <ion-slides>
+                    <ion-slide class="picture-container">
+                      <button (click)="takePicture()">
+                          <img [src]="'assets/icon/camera.png'">
+                          <div class="picture-text">{{"CREATE_ASSET.ADD_PICTURE" | translate}}</div>
+                      </button>
+                    </ion-slide>
+                    <ion-slide *ngFor="let picture of pictures" class="picture-container">
+                        {{picture}}
+                    </ion-slide>
+                </ion-slides>
+            </ion-item-divider>
             <ion-item>
                 <ion-label color="primary">{{"CREATE_ASSET.BRAND"|translate}}</ion-label>
                 <ion-select [(ngModel)]="brand.id" name="brand" multiple="false" okText="{{'OK'|translate}}" cancelText="{{'CANCEL'|translate}}" (ngModelChange)="onBrandChange(brand.id)">
